@@ -264,7 +264,33 @@ $translations = array(
         'Failed login count' => 'लॉगिन विफल गिनती',
         'Language' => 'भाषा',
     ),
-    
-
-
+    'uk' => array(
+        'Roundcube User Management' => 'Управління користувачами Roundcube',
+        'Add User' => 'Додати користувача',
+        'User' => 'Користувач',
+        'Created at' => 'Створено',
+        'Last login' => 'Останній вхід',
+        'Action' => 'Дія',
+        'Delete' => 'Видалити',
+        'Email' => 'Електронна пошта',
+        'Enter complete email address.' => 'Введіть повну електронну адресу.',
+        'Close' => 'Закрити',
+        'Cancel' => 'Скасувати',
+        'Add' => 'Додати',
+        'Delete User' => 'Видалити користувача',
+        'Operation result' => 'Результат операції',
+        'Operation successful' => 'Операція успішна',
+        'Unknown error' => 'Невідома помилка',
+        'User successfully added' => 'Користувач успішно доданий',
+        'User successfully deleted' => 'Користувач успішно видалений',
+        'User does not exist' => 'Користувача не існує',
+        'User already exist' => 'Такий користувач вже існує',
+        'Email is invalid' => 'Електронна пошта недійсна',
+        'Request is missing data' => 'Відсутні дані в запиті',
+        'Are you sure you want to delete this user?' => 'Ви впевнені, що хочете видалити цього користувача?',
+        'Failed login' => 'Неуспішний вхід',
+        'Failed login count' => 'Кількість неуспішних входів',
+        'Language' => 'Мова',
+    ),
+);
 ?>

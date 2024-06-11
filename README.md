@@ -15,4 +15,4 @@ The docker-compose file is ment for local develeopment.
 - ADMIN_USER
 - ADMIN_PASSWORD
 - IMAP_HOST
-- LANG (currently supported "en","cs","de","fr","es","ru","it","pl","sv","hi")
+- LANG (currently supported "en","cs","de","fr","es","uk","ru","it","pl","sv","hi")
