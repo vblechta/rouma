@@ -18,12 +18,12 @@ $messages = array(
 
 ?>
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="light">
     <?php include('inc/head.php') ?>
     <body>
         <div class="container overflow-hidden">
             <h1 class="fs-4 my-3"><?php translate('Roundcube User Management') ?></h1>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal"><?php translate('Add User') ?></button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="nf nf-oct-plus me-2"></i><?php translate('Add User') ?></button>
             <div class="w-100 overflow-auto">
                 <table class="table table-striped table-bordered bg-white w-100 mt-3">
                     <thead>
@@ -40,7 +40,7 @@ $messages = array(
                     <tbody>    
                         <?php 
                             foreach($users as $user) {
-                                echo '<tr><td>'.$user['username'].'</td><td>'.$user['created'].'</td><td>'.$user['last_login'].'</td><td>'.$user['failed_login'].'</td><td>'.$user['failed_login_counter'].'</td><td>'.$user['language'].'</td><td><button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-username="'.$user['username'].'" data-id="'.$user['user_id'].'">'.translate('Delete',false).'</button></td></tr>';
+                                echo '<tr><td>'.$user['username'].'</td><td>'.$user['created'].'</td><td>'.$user['last_login'].'</td><td>'.$user['failed_login'].'</td><td>'.$user['failed_login_counter'].'</td><td>'.$user['language'].'</td><td><button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-username="'.$user['username'].'" data-id="'.$user['user_id'].'"><i class="nf nf-md-delete me-2"></i>'.translate('Delete',false).'</button></td></tr>';
                             }
                         ?>
                     </tbody>
@@ -67,7 +67,7 @@ $messages = array(
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php translate('Cancel') ?></button>
-                <input class="btn btn-primary" type="submit" form="addUserForm" value="<?php translate('Add') ?>">
+                <button class="btn btn-primary" type="submit" form="addUserForm"><i class="nf nf-oct-plus me-2"></i><?php translate('Add') ?></button>
               </div>
             </div>
           </div>
@@ -112,7 +112,7 @@ $messages = array(
                 ?>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php translate('Close') ?></button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="nf nf-fa-ok_sign me-2"></i><?php translate('Close') ?></button>
               </div>
             </div>
           </div>
@@ -149,7 +149,7 @@ $messages = array(
                     var userIdInput = deleteUserModal.querySelector('#userIdToDelete');
                     var deleteConfirm = deleteUserModal.querySelector('#deleteConfirm');
                     userIdInput.value = userId;
-                    deleteConfirm.innerHTML = '<?php translate('Delete') ?> <b>'+userName+'</b>';
+                    deleteConfirm.innerHTML = '<i class="nf nf-md-delete me-2"></i><?php translate('Delete') ?> <b>'+userName+'</b>';
                     
                     // close deleteUserModal by pressing enter key
                     document.addEventListener("keypress", function(event) {
@@ -197,6 +197,26 @@ $messages = array(
                         }
                     })
                 }
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+              // Function to update the theme based on the system setting
+              function updateTheme() {
+                  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const htmlElement = document.documentElement;
+              
+                  if (prefersDarkScheme) {
+                      htmlElement.setAttribute('data-bs-theme', 'dark');
+                  } else {
+                      htmlElement.setAttribute('data-bs-theme', 'light');
+                  }
+              }
+            
+              // Initial theme check
+              updateTheme();
+            
+              // Listen for changes in the system theme
+              window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
             });
     </script>
     </body>
