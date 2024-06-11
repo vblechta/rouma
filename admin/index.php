@@ -24,7 +24,7 @@ $messages = array(
         <div class="container overflow-hidden">
             <h1 class="fs-4 my-3"><?php translate('Roundcube User Management') ?></h1>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal"><?php translate('Add User') ?></button>
-            <div class="w-100 overflow-scroll">
+            <div class="w-100 overflow-auto">
                 <table class="table table-striped table-bordered bg-white w-100 mt-3">
                     <thead>
                         <tr>
