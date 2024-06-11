@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $database->insert("users", [
                     "username" => $username,
-                    "mail_host" => getenv('IMAP_HOST')
+                    "mail_host" => getenv('IMAP_HOST'),
+                    "created" => date("Y-m-d H:i:s"),
                 ]);
             }
             catch (PDOException $e) {

@@ -1,7 +1,13 @@
-# rouma
+# ROUMA
+
 Roundcube User Management Tool
 
+Use docker image from: [](https://hub.docker.com/repository/docker/vblechta/rouma/general)
+
+The docker-compose file is ment for local develeopment.
+
 ## Environment variables
+
 - DB_HOST
 - DB_NAME
 - DB_USER

@@ -1,0 +1,78 @@
+services:
+  roundcubemail:
+    image: roundcube/roundcubemail:latest
+    ports:
+      - 8086:80
+    restart: unless-stopped
+    depends_on:
+      - db
+    volumes:
+      - ./data/www/:/var/www/html
+    environment:
+      - ROUNDCUBEMAIL_DB_TYPE=mysql
+      - ROUNDCUBEMAIL_DB_HOST=db
+      - ROUNDCUBEMAIL_DB_NAME=${NAME}
+      - ROUNDCUBEMAIL_DB_USER=${NAME}
+      - ROUNDCUBEMAIL_DB_PASSWORD=${DB_PASSWORD}
+      - ROUNDCUBEMAIL_SKIN=elastic
+      - ROUNDCUBEMAIL_DEFAULT_HOST=${IMAP_ENC:-ssl}://${IMAP_HOST}
+      - ROUNDCUBEMAIL_DEFAULT_PORT=${IMAP_PORT:-993}
+      - ROUNDCUBEMAIL_SMTP_SERVER=${SMTP_ENC:-ssl}://${SMTP_HOST}
+      - ROUNDCUBEMAIL_SMTP_PORT=${SMTP_PORT:-465}
+      - ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE=${UPLOAD_MAX_FILESIZE:-128M}
+      - ROUNDCUBEMAIL_PLUGINS=archive,zipdownload,jqueryui,filesystem_attachments,emoticons,managesieve,newmail_notifier,markasjunk,password,acl,reconnect,vcard_attachments,new_user_dialog
+    networks:
+      - roundcube_network
+
+  db:
+    image: lscr.io/linuxserver/mariadb:latest
+    restart: unless-stopped
+    volumes:
+      - ./data/database/:/config
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${NAME}
+      MYSQL_USER: ${NAME}
+      PGID: 1000
+      PUID: 1000
+    networks:
+      - roundcube_network
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: ${NAME}
+      PMA_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    restart: always
+    ports:
+      - 8087:80
+    networks:
+      - roundcube_network
+
+  admin:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8089:80
+    restart: unless-stopped
+    networks:
+      - roundcube_network
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: ${NAME}
+      DB_USER: ${NAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      IMAP_HOST: ${IMAP_HOST}
+      LANG: ${ADMIN_LANG}
+
+networks:
+  roundcube_network:
+    name: ${NAME}

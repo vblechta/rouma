@@ -13,7 +13,7 @@ function translate($string,$echo=true) {
 
 $translations = array(
     'cs' => array(
-        'Users' => 'Uživatelé',
+        'Roundcube User Management' => 'Správa uživatelů Roundcube',
         'Add User' => 'Přidat uživatele',
         'User' => 'Uživatel',
         'Created at' => 'Vytvořeno',
@@ -36,6 +36,9 @@ $translations = array(
         'Email is invalid' => 'E-mail je neplatný',
         'Request is missing data' => 'Požadavek postrádá data',
         'Are you sure you want to delete this user?' => 'Jste si jisti, že chcete smazat tohoto uživatele?',
+        'Failed login' => 'Neúspěšné přihlášení',
+        'Failed login count' => 'Počet neuspěšných přihlášení',
+        'Language' => 'Jazyk',
         )
 );
 

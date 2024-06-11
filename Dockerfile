@@ -8,5 +8,6 @@ RUN usermod  --uid $UID $UNAME
 RUN groupmod --gid $GID $UGROUP
 
 RUN docker-php-ext-install -j$(nproc) mysqli pdo_mysql
+RUN a2enmod rewrite
 
 COPY admin/ /var/www/html/

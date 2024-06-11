@@ -21,3 +21,15 @@ Options -Indexes
     Order Allow,Deny
     Allow from all
 </Files>
+
+RewriteEngine On
+
+# Rewrite rule to redirect /process to /process.php
+RewriteRule ^process$ process.php [L]
+
+# Allow access to the root index.php
+RewriteCond %{REQUEST_URI} !^/index\.php$ [NC]
+
+# Rewrite rule to return 404 for any other .php files
+RewriteCond %{THE_REQUEST} \.php [NC]
+RewriteRule ^ - [R=404,L]
