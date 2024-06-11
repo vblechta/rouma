@@ -21,29 +21,31 @@ $messages = array(
 <html>
     <?php include('inc/head.php') ?>
     <body>
-        <div class="container">
-            <h1 class="fs-5"><?php translate('Roundcube User Management') ?></h1>
+        <div class="container overflow-hidden">
+            <h1 class="fs-4 my-3"><?php translate('Roundcube User Management') ?></h1>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal"><?php translate('Add User') ?></button>
-            <table class="table table-striped table-bordered bg-white w-100 mt-3">
-                <thead>
-                    <tr>
-                        <th class="outline" style="width: calc(100%/8);"><?php translate('User') ?></th>
-                        <th class="outline" style="width: calc(100%/8);"><?php translate('Created at') ?></th>
-                        <th class="outline" style="width: calc(100%/8);"><?php translate('Last login') ?></th>
-                        <th class="outline" style="width: calc(100%/8);"><?php translate('Failed login') ?></th>
-                        <th class="outline" style="width: calc(100%/8);"><?php translate('Failed login count') ?></th>
-                        <th class="outline" style="width: calc(100%/8);"><?php translate('Language') ?></th>
-                        <th class="outline" style="width: calc(100%/8);"><?php translate('Action') ?></th>
-                    </tr>
-                </thead>
-                <tbody>    
-                    <?php 
-                        foreach($users as $user) {
-                            echo '<tr><td>'.$user['username'].'</td><td>'.$user['created'].'</td><td>'.$user['last_login'].'</td><td>'.$user['failed_login'].'</td><td>'.$user['failed_login_counter'].'</td><td>'.$user['language'].'</td><td><button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-username="'.$user['username'].'" data-id="'.$user['user_id'].'">'.translate('Delete',false).'</button></td></tr>';
-                        }
-                    ?>
-                </tbody>
-            </table>
+            <div class="w-100 overflow-scroll">
+                <table class="table table-striped table-bordered bg-white w-100 mt-3">
+                    <thead>
+                        <tr>
+                            <th class="outline" style="width: calc(100%/8);"><?php translate('User') ?></th>
+                            <th class="outline" style="width: calc(100%/8);"><?php translate('Created at') ?></th>
+                            <th class="outline" style="width: calc(100%/8);"><?php translate('Last login') ?></th>
+                            <th class="outline" style="width: calc(100%/8);"><?php translate('Failed login') ?></th>
+                            <th class="outline" style="width: calc(100%/8);"><?php translate('Failed login count') ?></th>
+                            <th class="outline" style="width: calc(100%/8);"><?php translate('Language') ?></th>
+                            <th class="outline" style="width: calc(100%/8);"><?php translate('Action') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>    
+                        <?php 
+                            foreach($users as $user) {
+                                echo '<tr><td>'.$user['username'].'</td><td>'.$user['created'].'</td><td>'.$user['last_login'].'</td><td>'.$user['failed_login'].'</td><td>'.$user['failed_login_counter'].'</td><td>'.$user['language'].'</td><td><button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-username="'.$user['username'].'" data-id="'.$user['user_id'].'">'.translate('Delete',false).'</button></td></tr>';
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Create Modal -->
