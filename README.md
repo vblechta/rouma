@@ -2,7 +2,7 @@
 
 Roundcube User Management Tool
 
-Use docker image from: [](https://hub.docker.com/repository/docker/vblechta/rouma/general)
+Use docker image from: [hub.docker.com/repository/docker/vblechta/rouma](https://hub.docker.com/repository/docker/vblechta/rouma/general)
 
 The docker-compose file is ment for local develeopment.
 
